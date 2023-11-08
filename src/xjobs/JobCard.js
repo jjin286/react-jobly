@@ -1,6 +1,7 @@
 import { formatCurrency } from "../utility/helpers";
 /**Renders job card
  *
+ *
  * props:
  * companyHandle
  * title

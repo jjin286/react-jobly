@@ -1,4 +1,5 @@
 /**Renders company card
+ * 
  * Props:
  * - handle
  * - name
