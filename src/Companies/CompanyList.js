@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
-import SearchForm from "../Utility/SearchForm";
+import SearchForm from "../utility/SearchForm";
 
 /** Render CompanyList
  *
  * state:
  * - companies for list of companies
- * - search for search term
  *
  * RouteList -> CompanyList -> {SearchForm, CompanyCard}
  */
@@ -25,6 +24,9 @@ function CompanyList() {
     const companiesFromAPI = await JoblyApi.getCompanies(search);
     setCompanies(companiesFromAPI);
   }
+
+  //If statement: if companies falsey, return null
+  //else return the rest!
 
   return (
     <div className="CompanyList">

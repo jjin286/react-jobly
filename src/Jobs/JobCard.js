@@ -1,4 +1,4 @@
-import { formatCurrency } from "../Utility/helpers";
+import { formatCurrency } from "../utility/helpers";
 /**Renders job card
  *
  * props:
