@@ -1,28 +1,43 @@
 import { useState, useEffect } from "react";
 import JoblyApi from "../api";
 import JobCardList from "./JobCardList";
+import SearchForm from "../Utility/SearchForm";
 
-/** Fetches all jobs from API and renders JobCardList
+/** Fetches all jobs from API and renders list of jobs
  *
- * RouteList -> JobList
+ * state:
+ * - jobs like [{job}, {job}] or null to start
+ * - search ""
+ *
+ * RouteList -> JobList -> {SearchForm, JobCardList}
  */
 function JobList() {
   const [jobs, setJobs] = useState(null);
 
   console.log("Job List rendered ");
 
+  /**Gets all jobs for initial mount */
   useEffect(function loadJobsFromAPI() {
-    /**Gets all jobs from JoblyApi */
-    async function getJobs() {
-      const jobsFromApi = await JoblyApi.getJobs();
-      setJobs(jobsFromApi);
-    }
     getJobs();
   }, []);
 
+  /**Gets jobs from JoblyApi by search terms */
+  async function getJobs(search = "") {
+    const jobsFromApi = await JoblyApi.getJobs(search);
+    setJobs(jobsFromApi);
+  }
+
   return (
     <div className="JobList">
-      {jobs === null ? <h1>Loading...</h1> : <JobCardList jobs={jobs} />}
+      {jobs === null ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <SearchForm handleSave={getJobs} />
+          {jobs.length === 0 && <span>No jobs found</span>}
+          <JobCardList jobs={jobs} />
+        </>
+      )}
     </div>
   );
 }

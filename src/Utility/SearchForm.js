@@ -5,31 +5,24 @@ import { useState } from "react";
  * Function from parent to call on form submission
  *
  * state:
- * - Form data
+ * - search : form state for search
  *
  * {CompanyList, JobList} -> SearchForm
  */
 function SearchForm({ handleSave }) {
-  const [formData, setFormData] = useState("");
+  const [search, setSearch] = useState("");
 
   console.log("Search form rendered");
 
   /**Handle form data updates */
   function handleChange(evt) {
-    const input = evt.target;
-    setFormData((formData) => ({
-      ...formData,
-      [input.name]: input.value,
-    }));
+    const input = evt.target.value;
+    setSearch(input);
   }
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (formData.search.length > 0) {
-      handleSave(formData);
-    } else {
-      alert("Search must be at least one character");
-    }
+    handleSave(search.trim());
   }
 
   return (

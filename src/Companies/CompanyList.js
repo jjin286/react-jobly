@@ -2,45 +2,29 @@ import { useState, useEffect } from "react";
 import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../Utility/SearchForm";
-import { Link } from "react-router-dom";
 
 /** Render CompanyList
  *
- * RouteList -> CompanyList -> CompanyCard
+ * state:
+ * - companies for list of companies
+ * - search for search term
+ *
+ * RouteList -> CompanyList -> {SearchForm, CompanyCard}
  */
 function CompanyList() {
   const [companies, setCompanies] = useState(null);
-  const [search, setSearch] = useState(null);
   console.log("Company List rendered, State: ", companies);
 
+  /**Gets all companies for initial mount */
   useEffect(function loadCompaniesFromAPI() {
-    /**Gets all companies from JoblyApi */
-    async function getCompanies() {
-      const companiesFromAPI = await JoblyApi.getCompanies();
-      setCompanies(companiesFromAPI);
-    }
     getCompanies();
   }, []);
 
-  useEffect(
-    function loadFilteredCompaniesFromAPI() {
-      /**gets companies that match search criteria from JoblyApi */
-      async function getFilteredCompanies() {
-        const companiesFromAPI = await JoblyApi.getCompanyBySearch(search);
-        setCompanies(companiesFromAPI);
-      }
-      if (search !== null && search.length > 0) {
-        getFilteredCompanies();
-      }
-    },
-    [search]
-  );
-
-  function handleSearch(formData) {
-    setSearch(formData.search);
+  /**Gets all companies from JoblyApi allowing filtering by search */
+  async function getCompanies(search = "") {
+    const companiesFromAPI = await JoblyApi.getCompanies(search);
+    setCompanies(companiesFromAPI);
   }
-
-  //when the search is submitted, updated set search, which calls another useeffect
 
   return (
     <div className="CompanyList">
@@ -48,11 +32,15 @@ function CompanyList() {
         <h1>Loading....</h1>
       ) : (
         <>
-          <SearchForm handleSave={handleSearch} />
+          <SearchForm handleSave={getCompanies} />
+          {companies.length === 0 && <span>No companies found</span>}
           {companies.map((c) => (
-            <Link to={`/companies/${c.handle}`}>
-              <CompanyCard company={c} key={c.handle} />
-            </Link>
+            <CompanyCard
+              handle={c.handle}
+              name={c.name}
+              description={c.description}
+              key={c.handle}
+            />
           ))}
         </>
       )}

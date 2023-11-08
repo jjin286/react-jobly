@@ -1,14 +1,23 @@
 /**Renders company card
- * Props: company where company is at least like {name, description}
+ * Props:
+ * - handle
+ * - name
+ * - description
+ *
+ * CompanyList -> CompanyCard
  */
 
-function CompanyCard({ company }) {
+import { Link } from "react-router-dom";
+
+function CompanyCard({ handle, name, description }) {
   // console.log("Company Card rendered.");
 
   return (
     <div className="CompanyCard">
-      <h3>{company.name}</h3>
-      <div>{company.description}</div>
+      <Link to={`/companies/${handle}`}>
+        <h3>{name}</h3>
+        <div>{description}</div>
+      </Link>
     </div>
   );
 }

@@ -1,16 +1,21 @@
+import { formatCurrency } from "../Utility/helpers";
 /**Renders job card
+ *
  * props:
- * -job
+ * companyHandle
+ * title
+ * salary
+ * equity
  *
  * JobCardList -> JobCard
  */
-function JobCard({ job }) {
+function JobCard({ companyHandle, title, salary, equity }) {
   return (
     <div className="JobCard">
-      <h3>{job.title}</h3>
-      {job.companyHandle && <div>{job.companyHandle} </div>}
-      {job.salary && <div>Salary: {job.salary} </div>}
-      {job.equity && <div>Equity: {job.equity} </div>}
+      <h3>{title}</h3>
+      {companyHandle && <div>{companyHandle} </div>}
+      {salary && <div>Salary: {formatCurrency(salary)} </div>}
+      {equity && <div>Equity: {equity} </div>}
     </div>
   );
 }
