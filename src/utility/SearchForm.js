@@ -26,9 +26,9 @@ function SearchForm({ handleSave }) {
   }
 
   return (
-    <form className="SearchForm" onSubmit={handleSubmit}>
-      <input name="search" placeholder="search" onChange={handleChange} />
-      <button type="submit">Search!</button>
+    <form className="SearchForm justify-content-center d-flex" onSubmit={handleSubmit}>
+      <input className="form-control w-25 " name="search" placeholder="search" onChange={handleChange} />
+      <button className="btn btn-primary " type="submit">Search!</button>
     </form>
   );
 }

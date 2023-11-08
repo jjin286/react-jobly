@@ -1,5 +1,5 @@
 /**Renders company card
- * 
+ *
  * Props:
  * - handle
  * - name
@@ -14,12 +14,12 @@ function CompanyCard({ handle, name, description }) {
   // console.log("Company Card rendered.");
 
   return (
-    <div className="CompanyCard">
-      <Link to={`/companies/${handle}`}>
-        <h3>{name}</h3>
-        <div>{description}</div>
-      </Link>
-    </div>
+    <Link className="link-light text-decoration-none" to={`/companies/${handle}`}>
+      <div className="CompanyCard bg-info mx-auto my-3 p-3 w-50 text-start rounded">
+          <h3>{name}</h3>
+          <div>{description}</div>
+      </div>
+    </Link>
   );
 }
 
