@@ -1,7 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
-import RouteList from './RouteList';
-import Nav from './Nav';
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import RouteList from "./Utility/RouteList";
+import Nav from "./Utility/Nav";
 
 /** Renders App
  *

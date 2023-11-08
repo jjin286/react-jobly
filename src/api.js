@@ -12,7 +12,8 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  static token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
@@ -20,17 +21,13 @@ class JoblyApi {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
       authorization: `Bearer ${JoblyApi.token}`,
-      'content-type': 'application/json',
+      "content-type": "application/json",
     };
 
-    url.search = (method === "GET")
-      ? new URLSearchParams(data).toString()
-      : "";
+    url.search = method === "GET" ? new URLSearchParams(data).toString() : "";
 
     // set to undefined since the body property cannot exist on a GET method
-    const body = (method !== "GET")
-      ? JSON.stringify(data)
-      : undefined;
+    const body = method !== "GET" ? JSON.stringify(data) : undefined;
 
     const resp = await fetch(url, { method, body, headers });
 
@@ -39,14 +36,12 @@ class JoblyApi {
       console.error("API Error:", resp.statusText, resp.status);
       const { error } = await resp.json();
 
-      if( Array.isArray(error.message)){
+      if (Array.isArray(error.message)) {
         throw error.message;
-      }
-      else{
-        console.log(error.message)
+      } else {
+        console.log(error.message);
         throw [error.message];
       }
-      
     }
 
     return await resp.json();
@@ -61,5 +56,27 @@ class JoblyApi {
     return res.company;
   }
 
+  /** Get details on all companies*/
+
+  static async getCompanies() {
+    let res = await this.request(`companies`);
+    return res.companies;
+  }
+
+  /**Get companies filted by search term */
+  static async getCompanyBySearch(search) {
+    let res = await this.request(`companies`, { nameLike: search });
+    console.log("Searchedby:", res);
+    return res.companies;
+  }
+  /** Get details on all jobs*/
+
+  static async getJobs() {
+    let res = await this.request(`jobs`);
+    return res.jobs;
+  }
+
   // obviously, you'll add a lot here ...
 }
+
+export default JoblyApi;
