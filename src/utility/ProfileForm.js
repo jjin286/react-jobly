@@ -26,7 +26,7 @@ function ProfileForm({ updateUser }) {
   const [message, setMessage] = useState({messages:null});
 
   useEffect(
-    /** */
+    /**Pull previous form data into form */
     function loadForm(){
       if(user !== null){
         setFormData({
