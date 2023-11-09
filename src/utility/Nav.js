@@ -17,38 +17,50 @@ function Nav({ logout }) {
   const { user } = useContext(userContext);
 
   /**Return navlinks to be displayed when logged in */
-  function loggedIn(){
-    return(
+  function loggedIn() {
+    return (
       <>
-          <NavLink to={"/companies"}>Companies</NavLink>
-          <NavLink to={"/jobs"}>Jobs</NavLink>
-          <NavLink to={"/profile"}>Profile</NavLink>
+        <NavLink className="nav-link" to={"/companies"}>
+          Companies
+        </NavLink>
+        <NavLink className="nav-link" to={"/jobs"}>
+          Jobs
+        </NavLink>
+        <NavLink className="nav-link" to={"/profile"}>
+          Profile
+        </NavLink>
 
-          <NavLink to={"/logout"} onClick={logout}>
-            Logout {user.username}
-          </NavLink>
-        </>
-    )
+        <NavLink className="nav-link" to={"/logout"} onClick={logout}>
+          Logout {user.username}
+        </NavLink>
+      </>
+    );
   }
 
   /**Return navlinks to be displayed when logged out */
-  function loggedOut(){
-    return(
+  function loggedOut() {
+    return (
       <>
-        <NavLink to={"/login"}>Login</NavLink>
-        <NavLink to={"/signup"}>Signup</NavLink>
+        <NavLink className="nav-link" to={"/login"}>
+          Login
+        </NavLink>
+        <NavLink className="nav-link" to={"/signup"}>
+          Signup
+        </NavLink>
       </>
-    )
+    );
   }
 
   return (
-    <div className="Nav">
-      <NavLink to={"/"}>Jobly</NavLink>
-      {user !== null ? (
-        loggedIn()
-      ) : (
-        loggedOut()
-      )}
+    <div className="Nav navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <NavLink className="nav-link navbar-brand" to={"/"}>
+          Jobly
+        </NavLink>
+        <div className="navbar-nav">
+          {user !== null ? loggedIn() : loggedOut()}
+        </div>
+      </div>
     </div>
   );
 }

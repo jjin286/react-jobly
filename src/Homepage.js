@@ -8,7 +8,7 @@ import userContext from "./userContext";
 function Homepage() {
   const { user } = useContext(userContext);
   return (
-    <div>
+    <div className="Homepage">
       <h1>Jobly</h1>
       {user !== null && (
         <span>

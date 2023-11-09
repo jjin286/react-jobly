@@ -6,37 +6,24 @@ import Message from "./Message";
  *
  * Props:
  * updateUser - fn
- * errors - [err1, err2]
  *
  * state:
  * - formData : form state for form data
+ * - message: error/success messages
  *
  * RouteList -> ProfileForm -> Message
  */
 function ProfileForm({ updateUser }) {
   const { user } = useContext(userContext);
 
-  console.log("user context", user)
+  console.log("user context", user);
   const [formData, setFormData] = useState({
-    username: user?.username,
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    email: user?.email,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
   });
-  const [message, setMessage] = useState({messages:null});
-
-  useEffect(
-    /**Pull previous form data into form */
-    function loadForm(){
-      if(user !== null){
-        setFormData({
-          username: user?.username,
-          firstName: user?.firstName,
-          lastName: user?.lastName,
-          email: user?.email,
-        });
-      }
-  }, [user])
+  const [message, setMessage] = useState({ messages: null });
 
   /**Handle form data updates */
   function handleChange(evt) {
@@ -47,14 +34,14 @@ function ProfileForm({ updateUser }) {
     });
   }
 
-  /** Call parent function and clear form. */
+  /** Call parent function and update form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await updateUser(formData);
-      setMessage({messages:["Updated successfully."], type:"success"})
-    } catch(err){
-      setMessage({messages:err, type:"danger"});
+      setMessage({ messages: ["Updated successfully."], type: "success" });
+    } catch (err) {
+      setMessage({ messages: err, type: "danger" });
     }
     setFormData((formData) => ({ ...formData, username: user.username }));
   }
@@ -70,7 +57,7 @@ function ProfileForm({ updateUser }) {
         className="form-control w-25 "
         name="username"
         onChange={handleChange}
-        value={formData.username || ""}
+        value={formData.username}
         disabled
       />
       <label htmlFor="firstName">First Name</label>
@@ -80,7 +67,7 @@ function ProfileForm({ updateUser }) {
         className="form-control w-25 "
         name="firstName"
         onChange={handleChange}
-        value={formData.firstName || ""}
+        value={formData.firstName}
       />
       <label htmlFor="lastName">Last Name</label>
       <input
@@ -89,7 +76,7 @@ function ProfileForm({ updateUser }) {
         className="form-control w-25 "
         name="lastName"
         onChange={handleChange}
-        value={formData.lastName || ""}
+        value={formData.lastName}
       />
       <label htmlFor="email">Email</label>
       <input
@@ -98,12 +85,14 @@ function ProfileForm({ updateUser }) {
         className="form-control w-25 "
         name="email"
         onChange={handleChange}
-        value={formData.email || ""}
+        value={formData.email}
       />
       <button className="btn btn-primary " type="submit">
         Submit
       </button>
-      {message.messages !== null && <Message messages={message.messages} type={message.type} />}
+      {message.messages !== null && (
+        <Message messages={message.messages} type={message.type} />
+      )}
     </form>
   );
 }

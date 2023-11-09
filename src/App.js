@@ -35,6 +35,7 @@ function App() {
         const userInToken = jwtDecode(token);
         try {
           getUser(userInToken.username);
+          setErrors(null);
         } catch (err) {
           setToken(null);
           setErrors(err);
@@ -50,7 +51,7 @@ function App() {
 
   /**Logs in user */
   async function login({ username, password }) {
-    const token = await JoblyApi.login(username, password)
+    const token = await JoblyApi.login(username, password);
     setToken(token);
   }
 
@@ -64,7 +65,6 @@ function App() {
   /**Get user details */
   async function getUser(username) {
     setCurrentUser(await JoblyApi.getUser(username));
-    setErrors(null);
   }
 
   /**Update user */
@@ -78,17 +78,22 @@ function App() {
     setToken(null);
   }
 
+  /**If token isn't null and user is, show a loading message instead */
+  if (token !== null && currentUser === null) {
+    return (
+      <div className="App">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  //when we're checking stuff, just show loading! then we can just user context
   return (
     <div className="App">
       <BrowserRouter>
-        <userContext.Provider value={{ user: currentUser}}>
+        <userContext.Provider value={{ user: currentUser }}>
           <Nav logout={logout} />
-          <RouteList
-            register={signup}
-            login={login}
-            updateUser={updateUser}
-            token={token}
-          />
+          <RouteList register={signup} login={login} updateUser={updateUser} />
         </userContext.Provider>
       </BrowserRouter>
       {errors !== null && <Message messages={errors} type="danger" />}
