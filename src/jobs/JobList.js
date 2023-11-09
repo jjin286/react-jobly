@@ -30,7 +30,9 @@ function JobList() {
   return (
     <div className="JobList">
       {jobs === null ? (
-        <h1>Loading...</h1>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       ) : (
         <>
           <SearchForm handleSave={getJobs} />

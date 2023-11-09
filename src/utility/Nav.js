@@ -52,7 +52,7 @@ function Nav({ logout }) {
   }
 
   return (
-    <div className="Nav navbar navbar-expand-lg navbar-light bg-light">
+    <div className="Nav navbar navbar-expand-sm navbar-light bg-light">
       <div className="container-fluid">
         <NavLink className="nav-link navbar-brand" to={"/"}>
           Jobly

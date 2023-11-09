@@ -45,24 +45,28 @@ function LoginForm({ login }) {
 
   return (
     <form
-      className="LoginForm justify-content-center d-flex"
+      className="LoginForm d-flex flex-column container text-start"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="username">Username</label>
-      <input
-        id="username"
-        className="form-control w-25 "
-        name="username"
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        className="form-control w-25 "
-        name="password"
-        onChange={handleChange}
-      />
+      <div className="mb-3">
+        <label className="form-label" htmlFor="username">Username</label>
+        <input
+          id="username"
+          className="form-control "
+          name="username"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          className="form-control "
+          name="password"
+          onChange={handleChange}
+        />
+      </div>
       <button className="btn btn-primary " type="submit">
         Submit
       </button>

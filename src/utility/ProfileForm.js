@@ -47,53 +47,64 @@ function ProfileForm({ updateUser }) {
   }
 
   return (
-    <form
-      className="ProfileForm justify-content-center d-flex"
-      onSubmit={handleSubmit}
-    >
-      <label htmlFor="username">Username</label>
-      <input
-        id="username"
-        className="form-control w-25 "
-        name="username"
-        onChange={handleChange}
-        value={formData.username}
-        disabled
-      />
-      <label htmlFor="firstName">First Name</label>
-      <input
-        id="firstName"
-        type="firstName"
-        className="form-control w-25 "
-        name="firstName"
-        onChange={handleChange}
-        value={formData.firstName}
-      />
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        id="lastName"
-        type="lastName"
-        className="form-control w-25 "
-        name="lastName"
-        onChange={handleChange}
-        value={formData.lastName}
-      />
-      <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        type="email"
-        className="form-control w-25 "
-        name="email"
-        onChange={handleChange}
-        value={formData.email}
-      />
-      <button className="btn btn-primary " type="submit">
-        Submit
-      </button>
-      {message.messages !== null && (
-        <Message messages={message.messages} type={message.type} />
-      )}
-    </form>
+    <div className="ProfileForm d-flex flex-column container text-start" style={{height: "100vh"}}>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="username">Username</label>
+          <input
+            id="username"
+            className="form-control"
+            name="username"
+            onChange={handleChange}
+            value={formData.username}
+            disabled
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label" htmlFor="firstName">First Name</label>
+          <input
+            id="firstName"
+            type="firstName"
+            className="form-control"
+            name="firstName"
+            onChange={handleChange}
+            value={formData.firstName}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label" htmlFor="lastName">Last Name</label>
+          <input
+            id="lastName"
+            type="lastName"
+            className="form-control"
+            name="lastName"
+            onChange={handleChange}
+            value={formData.lastName}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label" htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            className="form-control"
+            name="email"
+            onChange={handleChange}
+            value={formData.email}
+          />
+        </div>
+
+        <button className="btn btn-primary " type="submit">
+          Submit
+        </button>
+        {message.messages !== null && (
+          <Message messages={message.messages} type={message.type} />
+        )}
+      </form>
+    </div>
   );
 }
 

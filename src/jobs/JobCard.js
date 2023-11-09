@@ -12,7 +12,7 @@ import { formatCurrency } from "../utility/helpers";
  */
 function JobCard({ companyHandle, title, salary, equity }) {
   return (
-    <div className="JobCard bg-info mx-auto my-3 p-3 w-50 text-start rounded">
+    <div className="JobCard mx-auto my-3 p-3 w-50 text-start rounded bg-secondary-subtle text-bg-light">
       <h3>{title}</h3>
       {companyHandle && <div>{companyHandle} </div>}
       {salary && <div>Salary: {formatCurrency(salary)} </div>}

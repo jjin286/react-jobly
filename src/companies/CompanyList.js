@@ -25,13 +25,12 @@ function CompanyList() {
     setCompanies(companiesFromAPI);
   }
 
-  //If statement: if companies falsey, return null
-  //else return the rest!
-
   return (
-    <div className="CompanyList">
+    <div style={{height:"100%"}} className="CompanyList">
       {companies === null ? (
-        <h1>Loading....</h1>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       ) : (
         <>
           <SearchForm handleSave={getCompanies} />
