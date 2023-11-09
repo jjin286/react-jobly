@@ -1,5 +1,4 @@
 import { formatCurrency } from "../utility/helpers";
-// import "./JobCard.css"
 /**Renders job card
  *
  *
