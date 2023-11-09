@@ -12,7 +12,7 @@ function Homepage() {
       <h1>Jobly</h1>
       {user !== null && (
         <span>
-          Welcome back, {user.firstName} {user.lastName}
+          Welcome, {user.firstName} {user.lastName}
         </span>
       )}
     </div>

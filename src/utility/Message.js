@@ -10,7 +10,7 @@ function Message({ messages, type }) {
   return (
     <div className={`Message alert alert-${type}`}>
       {messages.map((m) => (
-        <span key={uuid()}>{m}</span>
+        <div key={uuid()}>{m}</div>
       ))}
     </div>
   );

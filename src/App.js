@@ -6,8 +6,7 @@ import Nav from "./utility/Nav";
 import userContext from "./userContext";
 import { useEffect, useState } from "react";
 import JoblyApi from "./api";
-import Message from "./utility/Message";
-
+import { jwtDecode } from "jwt-decode";
 /** Renders App
  *
  * App -> {Nav, RouteList}
@@ -20,35 +19,38 @@ function App() {
 
   console.log("user state", user);
 
-  /**Logs in user */
-  async function login(formData) {
-    try {
-      setToken(await JoblyApi.login(formData.username, formData.password));
-      getUser(formData.username);
-      setErrors(null);
-    } catch (err) {
-      if (Array.isArray(err)) {
-        setErrors(err);
+  useEffect(
+    /**decodes token and sets the user based off the username within it */
+    function getUserNameFromToken() {
+      if (token !== null) {
+        const userInToken = jwtDecode(token);
+        try {
+          getUser(userInToken.username);
+        } catch (err) {
+          setErrors(err);
+        }
       } else {
-        setErrors([err.message]);
+        setUser(null);
       }
+    },
+    [token]
+  );
+
+  /**Logs in user */
+  async function login({ username, password }) {
+    try {
+      setToken(await JoblyApi.login(username, password));
+    } catch (err) {
+      setErrors(err);
     }
   }
 
   /**Register a new user */
-  async function register({
-    username = "",
-    password = "",
-    firstName = "",
-    lastName = "",
-    email = "",
-  }) {
+  async function register({ username, password, firstName, lastName, email }) {
     try {
       setToken(
         await JoblyApi.register(username, password, firstName, lastName, email)
       );
-      getUser(username);
-      setErrors(null);
     } catch (err) {
       setErrors(err);
     }
@@ -70,10 +72,9 @@ function App() {
     }
   }
 
-  /**Logout user by setting token and user back to null */
+  /**Logout user by setting token to null*/
   function logout() {
     setToken(null);
-    setUser(null);
   }
 
   return (

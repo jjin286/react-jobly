@@ -11,7 +11,10 @@ import Message from "./Message";
  * RouteList -> LoginForm
  */
 function LoginForm({ login, errors }) {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
   console.log("Login form rendered");
 

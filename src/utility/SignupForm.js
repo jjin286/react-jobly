@@ -13,13 +13,20 @@ import Message from "./Message";
  * RouteList -> SignupForm -> Message
  */
 function SignupForm({ register, errors }) {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
 
   console.log("Signup form rendered");
 
   /**Handle form data updates */
   function handleChange(evt) {
     const { name, value } = evt.target;
+    console.log(formData);
 
     setFormData((currentFormData) => {
       return { ...currentFormData, [name]: value };
