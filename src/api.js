@@ -76,8 +76,6 @@ class JoblyApi {
   static async login(username, password) {
     let res = await this.request(`auth/token`, { username, password }, "POST");
 
-    JoblyApi.token = res.token;
-
     return res.token;
   }
 
@@ -89,8 +87,6 @@ class JoblyApi {
       { username, password, firstName, lastName, email },
       "POST"
     );
-    //TODO: set token in the useEffect instead of here of line 79
-    JoblyApi.token = res.token;
 
     return res.token;
   }

@@ -6,11 +6,13 @@ import { useState } from "react";
  *
  * state:
  * - search : form state for search
+ * -
  *
  * {CompanyList, JobList} -> SearchForm
  */
 function SearchForm({ handleSave }) {
   const [search, setSearch] = useState("");
+  const [errors, setErrors] = useState(null);
 
   console.log("Search form rendered");
 
@@ -22,7 +24,11 @@ function SearchForm({ handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave(search.trim());
+    try{
+      handleSave(search.trim());
+    } catch(err){
+      setErrors(err);
+    }
   }
 
   return (

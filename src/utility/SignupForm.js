@@ -1,18 +1,19 @@
 import { useState } from "react";
 import Message from "./Message";
+import { useNavigate } from "react-router-dom";
 
 /**Renders signup form
  *
  * Props:
  * Function from parent to call on form submission
- * Errors - list of errors
  *
  * state:
  * - formData : form state for form data
+ * - errors
  *
  * RouteList -> SignupForm -> Message
  */
-function SignupForm({ register, errors }) {
+function SignupForm({ register }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -20,6 +21,8 @@ function SignupForm({ register, errors }) {
     lastName: "",
     email: "",
   });
+  const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
 
   console.log("Signup form rendered");
 
@@ -34,9 +37,15 @@ function SignupForm({ register, errors }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    register(formData);
+    try{
+      await register(formData);
+      navigate("/");
+    } catch(err){
+      setErrors(err);
+    }
+
     //Try catch, usenavigate to go to homepage, think about function type
   }
 

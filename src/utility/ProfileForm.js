@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import userContext from "../userContext";
 import Message from "./Message";
 
@@ -13,15 +13,30 @@ import Message from "./Message";
  *
  * RouteList -> ProfileForm -> Message
  */
-function ProfileForm({ updateUser, errors }) {
+function ProfileForm({ updateUser }) {
   const { user } = useContext(userContext);
 
+  console.log("user context", user)
   const [formData, setFormData] = useState({
-    username: user.username,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
+    username: user?.username,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    email: user?.email,
   });
+  const [message, setMessage] = useState({messages:null});
+
+  useEffect(
+    /** */
+    function loadForm(){
+      if(user !== null){
+        setFormData({
+          username: user?.username,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          email: user?.email,
+        });
+      }
+  }, [user])
 
   /**Handle form data updates */
   function handleChange(evt) {
@@ -33,9 +48,14 @@ function ProfileForm({ updateUser, errors }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    updateUser(formData);
+    try{
+      await updateUser(formData);
+      setMessage({messages:["Updated successfully."], type:"success"})
+    } catch(err){
+      setMessage({messages:err, type:"danger"});
+    }
     setFormData((formData) => ({ ...formData, username: user.username }));
   }
 
@@ -83,7 +103,7 @@ function ProfileForm({ updateUser, errors }) {
       <button className="btn btn-primary " type="submit">
         Submit
       </button>
-      {errors !== null && <Message messages={errors} type="danger" />}
+      {message.messages !== null && <Message messages={message.messages} type={message.type} />}
     </form>
   );
 }

@@ -7,19 +7,19 @@ import { useContext } from "react";
  * Prop:
  * - logout fn
  *
+ * Event:
+ * - loggedIn fn
+ * - loggedOut fn
+ *
  * App -> Nav
  */
 function Nav({ logout }) {
   const { user } = useContext(userContext);
 
-  //TODO: two functions and then ternary in retunr to call userloggedin or not functions
-
-
-  return (
-    <div className="Nav">
-      <NavLink to={"/"}>Jobly</NavLink>
-      {user !== null ? (
-        <>
+  /**Return navlinks to be displayed when logged in */
+  function loggedIn(){
+    return(
+      <>
           <NavLink to={"/companies"}>Companies</NavLink>
           <NavLink to={"/jobs"}>Jobs</NavLink>
           <NavLink to={"/profile"}>Profile</NavLink>
@@ -28,11 +28,26 @@ function Nav({ logout }) {
             Logout {user.username}
           </NavLink>
         </>
+    )
+  }
+
+  /**Return navlinks to be displayed when logged out */
+  function loggedOut(){
+    return(
+      <>
+        <NavLink to={"/login"}>Login</NavLink>
+        <NavLink to={"/signup"}>Signup</NavLink>
+      </>
+    )
+  }
+
+  return (
+    <div className="Nav">
+      <NavLink to={"/"}>Jobly</NavLink>
+      {user !== null ? (
+        loggedIn()
       ) : (
-        <>
-          <NavLink to={"/login"}>Login</NavLink>
-          <NavLink to={"/signup"}>Signup</NavLink>
-        </>
+        loggedOut()
       )}
     </div>
   );

@@ -1,20 +1,24 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Message from "./Message";
 /**Renders login form
  *
  * Props:
- * Function from parent to call on form submission
+ * - login fn
  *
  * state:
  * - formData : form state for form data
- * TODO: update docstring
- * RouteList -> LoginForm
+ * - errors
+ *
+ * RouteList -> LoginForm -> Message
  */
-function LoginForm({ login, errors }) {
+function LoginForm({ login }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
 
   console.log("Login form rendered");
 
@@ -28,13 +32,15 @@ function LoginForm({ login, errors }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    //TODO: try catch, error state
-    login(formData);
-    //use useNavigate to send to homepage
-    //Ominous Sarah warning to be careful
-    //What type of function is this? does it need to be async? sounds like a hint
+    try{
+      await login(formData);
+      navigate("/");
+    } catch(err){
+      setErrors(err);
+    }
+
   }
 
   return (

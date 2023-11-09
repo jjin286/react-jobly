@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
 import JobCardList from "../jobs/JobCardList";
+import Message from "../utility/Message";
 
 /** Render CompanyDetail
  *
  * state:
  * - company (the specific company profile page)
- * - error false/true for company not found
+ * - errors false/true for company not found
  *
  * RouteList -> CompanyDetail -> {CompanyCard, JobCardList}
  */
@@ -39,9 +40,7 @@ function CompanyDetail() {
   if (errors.length > 0) {
     return (
       <div className="CompanyDetail">
-        {errors.map((e) => (
-          <span>{e}</span>
-        ))}
+        {errors !== null && <Message messages={errors} type="danger" />}
       </div>
     );
   }
