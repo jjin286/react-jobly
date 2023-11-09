@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Message from "./Message";
 /**Renders login form
  *
  * Props:
@@ -9,7 +10,7 @@ import { useState } from "react";
  *
  * RouteList -> LoginForm
  */
-function LoginForm({ handleSave }) {
+function LoginForm({ login, errors }) {
   const [formData, setFormData] = useState(null);
 
   console.log("Login form rendered");
@@ -18,7 +19,7 @@ function LoginForm({ handleSave }) {
   function handleChange(evt) {
     const { name, value } = evt.target;
 
-    setFormData(currentFormData => {
+    setFormData((currentFormData) => {
       return { ...currentFormData, [name]: value };
     });
   }
@@ -26,19 +27,22 @@ function LoginForm({ handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave(formData);
+    login(formData);
   }
 
   return (
-    <form className="LoginForm justify-content-center d-flex" onSubmit={handleSubmit}>
-      <label htmlFor="username" >Username</label>
+    <form
+      className="LoginForm justify-content-center d-flex"
+      onSubmit={handleSubmit}
+    >
+      <label htmlFor="username">Username</label>
       <input
         id="username"
         className="form-control w-25 "
         name="username"
         onChange={handleChange}
       />
-      <label htmlFor="password" >Password</label>
+      <label htmlFor="password">Password</label>
       <input
         id="password"
         type="password"
@@ -46,7 +50,10 @@ function LoginForm({ handleSave }) {
         name="password"
         onChange={handleChange}
       />
-      <button className="btn btn-primary " type="submit">Submit</button>
+      <button className="btn btn-primary " type="submit">
+        Submit
+      </button>
+      {errors !== null && <Message messages={errors} type="danger" />}
     </form>
   );
 }

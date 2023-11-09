@@ -71,6 +71,46 @@ class JoblyApi {
 
     return res.jobs;
   }
+
+  /**Login and returns token or errors if bad username/password */
+  static async login(username, password) {
+    let res = await this.request(`auth/token`, { username, password }, "POST");
+
+    JoblyApi.token = res.token;
+
+    return res.token;
+  }
+
+  /**Register and returns token or errors if bad inputs */
+
+  static async register(username, password, firstName, lastName, email) {
+    let res = await this.request(
+      `auth/register`,
+      { username, password, firstName, lastName, email },
+      "POST"
+    );
+
+    JoblyApi.token = res.token;
+
+    return res.token;
+  }
+
+  /**Get information on user */
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+
+    return res.user;
+  }
+
+  /**Patch user info */
+  static async updateUser(formData) {
+    const username = formData.username;
+    delete formData.username;
+
+    let res = await this.request(`users/${username}`, { ...formData }, "PATCH");
+
+    return res.user;
+  }
 }
 
 export default JoblyApi;
