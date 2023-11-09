@@ -12,6 +12,9 @@ import { useContext } from "react";
 function Nav({ logout }) {
   const { user } = useContext(userContext);
 
+  //TODO: two functions and then ternary in retunr to call userloggedin or not functions
+
+
   return (
     <div className="Nav">
       <NavLink to={"/"}>Jobly</NavLink>
@@ -20,8 +23,9 @@ function Nav({ logout }) {
           <NavLink to={"/companies"}>Companies</NavLink>
           <NavLink to={"/jobs"}>Jobs</NavLink>
           <NavLink to={"/profile"}>Profile</NavLink>
+
           <NavLink to={"/logout"} onClick={logout}>
-            Logout
+            Logout {user.username}
           </NavLink>
         </>
       ) : (

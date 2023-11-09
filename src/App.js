@@ -9,28 +9,31 @@ import JoblyApi from "./api";
 import { jwtDecode } from "jwt-decode";
 /** Renders App
  *
+ * //TODO: update the docstring
+ *
  * App -> {Nav, RouteList}
  *
  */
 function App() {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
   const [errors, setErrors] = useState(null);
 
-  console.log("user state", user);
+  console.log("user state", currentUser);
 
   useEffect(
     /**decodes token and sets the user based off the username within it */
-    function getUserNameFromToken() {
+    function getUserFromToken() {
       if (token !== null) {
         const userInToken = jwtDecode(token);
         try {
           getUser(userInToken.username);
         } catch (err) {
+          //TODO: set token to Null
           setErrors(err);
         }
       } else {
-        setUser(null);
+        setCurrentUser(null);
       }
     },
     [token]
@@ -46,10 +49,10 @@ function App() {
   }
 
   /**Register a new user */
-  async function register({ username, password, firstName, lastName, email }) {
+  async function signup({ username, password, firstName, lastName, email }) {
     try {
       setToken(
-        await JoblyApi.register(username, password, firstName, lastName, email)
+        await JoblyApi.signup(username, password, firstName, lastName, email)
       );
     } catch (err) {
       setErrors(err);
@@ -58,15 +61,15 @@ function App() {
 
   /**Get user details */
   async function getUser(username) {
-    setUser(await JoblyApi.getUser(username));
+    setCurrentUser(await JoblyApi.getUser(username));
     setErrors(null);
   }
 
   /**Update user */
-  async function updateUser(formdata) {
+  async function updateUser(formData) {
     try {
-      await JoblyApi.updateUser(formdata);
-      setUser((u) => getUser(u.username));
+      await JoblyApi.updateUser(formData);
+      setCurrentUser((u) => getUser(u.username));
     } catch (err) {
       setErrors(err);
     }
@@ -80,10 +83,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <userContext.Provider value={{ user, token }}>
+        <userContext.Provider value={{ user: currentUser}}>
           <Nav logout={logout} />
           <RouteList
-            register={register}
+            register={signup}
             login={login}
             updateUser={updateUser}
             errors={errors}

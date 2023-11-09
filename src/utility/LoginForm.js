@@ -7,7 +7,7 @@ import Message from "./Message";
  *
  * state:
  * - formData : form state for form data
- *
+ * TODO: update docstring
  * RouteList -> LoginForm
  */
 function LoginForm({ login, errors }) {
@@ -30,7 +30,11 @@ function LoginForm({ login, errors }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
+    //TODO: try catch, error state
     login(formData);
+    //use useNavigate to send to homepage
+    //Ominous Sarah warning to be careful
+    //What type of function is this? does it need to be async? sounds like a hint
   }
 
   return (

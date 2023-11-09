@@ -37,6 +37,7 @@ function SignupForm({ register, errors }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     register(formData);
+    //Try catch, usenavigate to go to homepage, think about function type
   }
 
   return (

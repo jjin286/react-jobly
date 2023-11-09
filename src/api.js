@@ -81,15 +81,15 @@ class JoblyApi {
     return res.token;
   }
 
-  /**Register and returns token or errors if bad inputs */
+  /**Signup and returns token or errors if bad inputs */
 
-  static async register(username, password, firstName, lastName, email) {
+  static async signup(username, password, firstName, lastName, email) {
     let res = await this.request(
       `auth/register`,
       { username, password, firstName, lastName, email },
       "POST"
     );
-
+    //TODO: set token in the useEffect instead of here of line 79
     JoblyApi.token = res.token;
 
     return res.token;
