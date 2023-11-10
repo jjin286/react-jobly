@@ -28,8 +28,8 @@ function CompanyList() {
   return (
     <div style={{height:"100%"}} className="CompanyList">
       {companies === null ? (
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
         <>
