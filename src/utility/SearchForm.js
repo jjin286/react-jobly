@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import _ from "lodash";
 /**Renders search bar
  *
@@ -14,31 +14,33 @@ import _ from "lodash";
 function SearchForm({ handleSave }) {
   const [search, setSearch] = useState("");
   const [errors, setErrors] = useState(null);
-  const debounceFn = useCallback(_.debounce(() => {
-    setSearch(input)
-    handleSave(search.trim())
-  }
-    , 250));
+  const debounceFn = useCallback(
+    _.debounce((search) => attemptChange(search), 800),
+    []
+  );
   console.log("Search form rendered");
+
+  useEffect(
+    function debouncedSearch() {
+      console.log("use effect", search);
+      debounceFn(search);
+    },
+    [search]
+  );
 
   /**Handle form data updates */
   function handleChange(evt) {
     const input = evt.target.value;
+    console.log("input", input);
     setSearch(input);
-    // debounceFn();
-    _.debounce(() => {
-      setSearch(input)
-      handleSave(search.trim())
-    }
-      , 250);
   }
 
-  function attemptChange(){
-    console.log("Triggered attemptChange")
+  async function attemptChange(search) {
+    console.log("Triggered attemptChange:", search);
     try {
-      handleSave(search.trim());
+      await handleSave(search.trim());
     } catch (err) {
-      console.log("err", err)
+      console.log("err", err);
       setErrors(err);
     }
   }
@@ -46,7 +48,7 @@ function SearchForm({ handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    attemptChange();
+    attemptChange(search);
   }
 
   return (
