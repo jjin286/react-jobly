@@ -4,6 +4,7 @@ import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
 import JobCardList from "../jobs/JobCardList";
 import Message from "../utility/Message";
+import LoadingSpinner from "../utility/LoadingSpinner"
 
 /** Render CompanyDetail
  *
@@ -48,7 +49,7 @@ function CompanyDetail() {
   return (
     <div className="CompanyDetail">
       {company === null ? (
-        <h1>Loading....</h1>
+        <LoadingSpinner />
       ) : (
         <>
           <CompanyCard

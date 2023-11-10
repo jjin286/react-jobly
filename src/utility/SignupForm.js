@@ -50,8 +50,9 @@ function SignupForm({ register }) {
   }
 
   return (
-    <div className="SignupForm text-start py-2 d-flex flex-column h-100 container">
-      <form onSubmit={handleSubmit}>
+    <div className="SignupForm fw-bold w-25 text-start py-2 d-flex flex-column h-75 justify-content-center container">
+      <h1>Signup</h1>
+      <form onSubmit={handleSubmit} className="bg-dark p-3 rounded">
       <div className="mb-3">
         <label htmlFor="username">Username</label>
         <input
@@ -106,7 +107,7 @@ function SignupForm({ register }) {
         />
       </div>
 
-      <button className="btn btn-secondary" type="submit">
+      <button className="btn btn-light" type="submit">
         Submit
       </button>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import JoblyApi from "../api";
 import JobCardList from "./JobCardList";
 import SearchForm from "../utility/SearchForm";
+import LoadingSpinner from "../utility/LoadingSpinner";
 
 /** Fetches all jobs from API and renders list of jobs
  *
@@ -30,9 +31,7 @@ function JobList() {
   return (
     <div className="JobList">
       {jobs === null ? (
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <LoadingSpinner />
       ) : (
         <>
           <SearchForm handleSave={getJobs} />

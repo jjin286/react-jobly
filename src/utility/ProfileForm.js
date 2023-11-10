@@ -47,8 +47,9 @@ function ProfileForm({ updateUser }) {
   }
 
   return (
-    <div className="ProfileForm d-flex flex-column container text-start py-2" style={{height: "100vh"}}>
-      <form onSubmit={handleSubmit}>
+    <div className="ProfileForm fw-bold d-flex flex-column container justify-content-center text-start w-25 py-2 h-75">
+      <h1>Edit Your Profile</h1>
+      <form onSubmit={handleSubmit} className="bg-dark p-3 rounded">
         <div className="mb-3">
           <label className="form-label" htmlFor="username">Username</label>
           <input
@@ -97,7 +98,7 @@ function ProfileForm({ updateUser }) {
           />
         </div>
 
-        <button className="btn btn-secondary " type="submit">
+        <button className="btn btn-light " type="submit">
           Submit
         </button>
         {message.messages !== null && (

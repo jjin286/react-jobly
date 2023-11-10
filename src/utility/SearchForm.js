@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import _ from "lodash";
+import Message from "./Message";
 /**Renders search bar
  *
  * Props:
@@ -21,8 +22,8 @@ function SearchForm({ handleSave }) {
   console.log("Search form rendered");
 
   useEffect(
+    /**Calls the debounce function with the search */
     function debouncedSearch() {
-      console.log("use effect", search);
       debounceFn(search);
     },
     [search]
@@ -31,41 +32,42 @@ function SearchForm({ handleSave }) {
   /**Handle form data updates */
   function handleChange(evt) {
     const input = evt.target.value;
-    console.log("input", input);
     setSearch(input);
   }
 
-  async function attemptChange(search) {
-    console.log("Triggered attemptChange:", search);
+  /**Calls parent function to change displayed results*/
+  function attemptChange(search) {
     try {
-      await handleSave(search.trim());
+      handleSave(search.trim());
     } catch (err) {
-      console.log("err", err);
       setErrors(err);
     }
   }
 
-  /** Call parent function and clear form. */
+  /** Prevents default and calls attemptChange with the search*/
   function handleSubmit(evt) {
     evt.preventDefault();
     attemptChange(search);
   }
 
   return (
-    <form
-      className="SearchForm py-4 justify-content-center d-flex"
-      onSubmit={handleSubmit}
-    >
-      <input
-        className="form-control w-25 "
-        name="search"
-        placeholder="search"
-        onChange={handleChange}
-      />
-      <button className="btn btn-secondary mx-2" type="submit">
-        Search
-      </button>
-    </form>
+    <div>
+      <form
+        className="SearchForm py-4 justify-content-center d-flex"
+        onSubmit={handleSubmit}
+      >
+        <input
+          className="form-control w-25 "
+          name="search"
+          placeholder="search"
+          onChange={handleChange}
+        />
+        <button className="btn btn-secondary mx-2" type="submit">
+          Search
+        </button>
+      </form>
+      {errors !== null && <Message messages={errors} type="danger" />}
+    </div>
   );
 }
 

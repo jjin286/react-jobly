@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../utility/SearchForm";
+import LoadingSpinner from "../utility/LoadingSpinner";
 
 /** Render CompanyList
  *
@@ -26,11 +27,9 @@ function CompanyList() {
   }
 
   return (
-    <div style={{height:"100%"}} className="CompanyList">
+    <div className="CompanyList">
       {companies === null ? (
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <LoadingSpinner />
       ) : (
         <>
           <SearchForm handleSave={getCompanies} />

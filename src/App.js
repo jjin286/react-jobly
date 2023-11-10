@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import { jwtDecode } from "jwt-decode";
 import Message from "./utility/Message";
+import LoadingSpinner from "./utility/LoadingSpinner";
 
-const BACKGROUND_IMAGE = ("https://images.unsplash.com/photo-1698681647459-40276a"+
-                           "71a56b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3"+
-                           "&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+const BACKGROUND_IMAGE =
+  "https://images.unsplash.com/photo-1698681647459-40276a" +
+  "71a56b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3" +
+  "&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 /** Renders App
  *
@@ -86,29 +88,22 @@ function App() {
   if (token !== null && currentUser === null) {
     return (
       <div className="App">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <LoadingSpinner />
       </div>
     );
   }
 
-  const style = {
-    backgroundImage: `url(${BACKGROUND_IMAGE})`,
-    backgroundSize: "cover",
-    color:"white",
-    backgroundAttachment: "fixed",
-    paddingBottom: "3rem",
-    height:"100%"
-  }
-
   return (
     <div className="App">
-      <div style={style} className="bg-image">
+      <div className="vh-100">
         <BrowserRouter>
           <userContext.Provider value={{ user: currentUser }}>
             <Nav logout={logout} />
-            <RouteList register={signup} login={login} updateUser={updateUser} />
+            <RouteList
+              register={signup}
+              login={login}
+              updateUser={updateUser}
+            />
           </userContext.Provider>
         </BrowserRouter>
       </div>
