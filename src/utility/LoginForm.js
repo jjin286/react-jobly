@@ -34,22 +34,23 @@ function LoginForm({ login }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await login(formData);
       navigate("/");
-    } catch(err){
+    } catch (err) {
       setErrors(err);
     }
-
   }
 
   return (
     <form
-      className="LoginForm d-flex flex-column container text-start"
+      className="LoginForm d-flex flex-column container py-2 text-start"
       onSubmit={handleSubmit}
     >
       <div className="mb-3">
-        <label className="form-label" htmlFor="username">Username</label>
+        <label className="form-label" htmlFor="username">
+          Username
+        </label>
         <input
           id="username"
           className="form-control "
@@ -58,7 +59,9 @@ function LoginForm({ login }) {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label" htmlFor="password">Password</label>
+        <label className="form-label" htmlFor="password">
+          Password
+        </label>
         <input
           id="password"
           type="password"
@@ -67,7 +70,7 @@ function LoginForm({ login }) {
           onChange={handleChange}
         />
       </div>
-      <button className="btn btn-primary " type="submit">
+      <button className="btn btn-secondary " type="submit">
         Submit
       </button>
       {errors !== null && <Message messages={errors} type="danger" />}

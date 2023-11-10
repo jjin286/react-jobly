@@ -24,17 +24,27 @@ function SearchForm({ handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       handleSave(search.trim());
-    } catch(err){
+    } catch (err) {
       setErrors(err);
     }
   }
 
   return (
-    <form className="SearchForm justify-content-center d-flex" onSubmit={handleSubmit}>
-      <input className="form-control w-25 " name="search" placeholder="search" onChange={handleChange} />
-      <button className="btn btn-primary " type="submit">Search!</button>
+    <form
+      className="SearchForm py-4 justify-content-center d-flex"
+      onSubmit={handleSubmit}
+    >
+      <input
+        className="form-control w-25 "
+        name="search"
+        placeholder="search"
+        onChange={handleChange}
+      />
+      <button className="btn btn-secondary mx-2" type="submit">
+        Search
+      </button>
     </form>
   );
 }

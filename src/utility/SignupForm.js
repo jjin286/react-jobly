@@ -39,10 +39,10 @@ function SignupForm({ register }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await register(formData);
       navigate("/");
-    } catch(err){
+    } catch (err) {
       setErrors(err);
     }
 
@@ -51,7 +51,7 @@ function SignupForm({ register }) {
 
   return (
     <form
-      className="SignupForm justify-content-center d-flex"
+      className="SignupForm justify-content-center py-2 d-flex h-100"
       onSubmit={handleSubmit}
     >
       <label htmlFor="username">Username</label>
@@ -93,7 +93,7 @@ function SignupForm({ register }) {
         name="email"
         onChange={handleChange}
       />
-      <button className="btn btn-primary " type="submit">
+      <button className="btn btn-secondary" type="submit">
         Submit
       </button>
 

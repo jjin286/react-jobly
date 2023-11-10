@@ -103,8 +103,8 @@ function App() {
   }
 
   return (
-    <div className="App bg-image">
-      <div style={style} className="">
+    <div className="App">
+      <div style={style} className="bg-image">
         <BrowserRouter>
           <userContext.Provider value={{ user: currentUser }}>
             <Nav logout={logout} />
