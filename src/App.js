@@ -84,6 +84,12 @@ function App() {
     setToken(null);
   }
 
+  /**Apply to job and then re-get user */
+  async function apply(jobId) {
+    await JoblyApi.applyToJob(currentUser.username, jobId);
+    getUser(currentUser.username);
+  }
+
   /**If token isn't null and user is, show a loading message instead */
   if (token !== null && currentUser === null) {
     return (
@@ -97,7 +103,7 @@ function App() {
     <div className="App">
       <div className="vh-100">
         <BrowserRouter>
-          <userContext.Provider value={{ user: currentUser }}>
+          <userContext.Provider value={{ user: currentUser, apply }}>
             <Nav logout={logout} />
             <RouteList
               register={signup}

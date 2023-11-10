@@ -18,6 +18,7 @@ function JobCardList({ jobs }) {
           title={j.title}
           salary={j.salary}
           equity={j.equity}
+          id={j.id}
           key={j.id}
         />
       ))}
