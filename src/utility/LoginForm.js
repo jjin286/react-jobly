@@ -43,10 +43,8 @@ function LoginForm({ login }) {
   }
 
   return (
-    <form
-      className="LoginForm d-flex flex-column container py-2 text-start"
-      onSubmit={handleSubmit}
-    >
+    <div className="LoginForm d-flex flex-column container py-2 text-start">
+      <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <label className="form-label" htmlFor="username">
           Username
@@ -74,7 +72,8 @@ function LoginForm({ login }) {
         Submit
       </button>
       {errors !== null && <Message messages={errors} type="danger" />}
-    </form>
+      </form>
+    </div>
   );
 }
 
