@@ -16,7 +16,6 @@ import Message from "./Message";
 function ProfileForm({ updateUser }) {
   const { user } = useContext(userContext);
 
-  console.log("user context", user);
   const [formData, setFormData] = useState({
     username: user.username,
     firstName: user.firstName,
@@ -47,11 +46,13 @@ function ProfileForm({ updateUser }) {
   }
 
   return (
-    <div className="ProfileForm fw-bold d-flex flex-column container justify-content-center text-start w-25 py-2 h-75">
+    <div className="ProfileForm fw-bold d-flex flex-column container w-25 justify-content-center text-start py-2 h-75">
       <h1>Edit Your Profile</h1>
-      <form onSubmit={handleSubmit} className="bg-dark p-3 rounded">
+      <form onSubmit={handleSubmit} className="bg-secondary p-3 rounded bg-opacity-75" >
         <div className="mb-3">
-          <label className="form-label" htmlFor="username">Username</label>
+          <label className="form-label" htmlFor="username">
+            Username
+          </label>
           <input
             id="username"
             className="form-control"
@@ -63,7 +64,9 @@ function ProfileForm({ updateUser }) {
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="firstName">First Name</label>
+          <label className="form-label" htmlFor="firstName">
+            First Name
+          </label>
           <input
             id="firstName"
             type="firstName"
@@ -75,7 +78,9 @@ function ProfileForm({ updateUser }) {
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="lastName">Last Name</label>
+          <label className="form-label" htmlFor="lastName">
+            Last Name
+          </label>
           <input
             id="lastName"
             type="lastName"
@@ -87,7 +92,9 @@ function ProfileForm({ updateUser }) {
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">Email</label>
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
           <input
             id="email"
             type="email"
@@ -98,7 +105,7 @@ function ProfileForm({ updateUser }) {
           />
         </div>
 
-        <button className="btn btn-light " type="submit">
+        <button className="btn btn-light opacity-75" type="submit">
           Submit
         </button>
         {message.messages !== null && (

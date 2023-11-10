@@ -4,7 +4,7 @@ import JoblyApi from "../api";
 import CompanyCard from "./CompanyCard";
 import JobCardList from "../jobs/JobCardList";
 import Message from "../utility/Message";
-import LoadingSpinner from "../utility/LoadingSpinner"
+import LoadingSpinner from "../utility/LoadingSpinner";
 
 /** Render CompanyDetail
  *
@@ -12,13 +12,11 @@ import LoadingSpinner from "../utility/LoadingSpinner"
  * - company (the specific company profile page)
  * - errors false/true for company not found
  *
- * RouteList -> CompanyDetail -> {CompanyCard, JobCardList}
+ * RouteList -> CompanyDetail -> {CompanyCard, JobCardList, Message, LoadingSpinner}
  */
 function CompanyDetail() {
   const [company, setCompany] = useState(null);
   const [errors, setErrors] = useState([]);
-
-  console.log("Company Detail rendered. State: ", company);
 
   const { handle } = useParams();
 
@@ -35,8 +33,6 @@ function CompanyDetail() {
     }
     getCompany();
   }, []);
-
-  console.log("Company Detail Jobs", company?.jobs);
 
   if (errors.length > 0) {
     return (

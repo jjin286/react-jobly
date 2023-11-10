@@ -2,8 +2,8 @@ import { v4 as uuid } from "uuid";
 /**Renders messages
  *
  * Prop
- * -messages []
- * -type
+ * - messages []
+ * - type ""
  *
  */
 function Message({ messages, type }) {

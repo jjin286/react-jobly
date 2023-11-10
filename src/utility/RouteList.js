@@ -16,12 +16,12 @@ import React, { useContext } from "react";
  * - register fn
  * - login fn
  * - updateUser fn
- * - token
  *
- * App -> RouteList -> {Homepage, CompanyList,
- *                      CompanyDetail, Joblist, ProfileForm, LoginForm}
+ * App -> RouteList -> {Homepage, CompanyList, CompanyDetail,
+ *                      Joblist, ProfileForm, LoginForm,
+ *                      SignupForm}
  */
-function RouteList({ register, login, updateUser, token }) {
+function RouteList({ register, login, updateUser }) {
   const { user } = useContext(userContext);
   return (
     <Routes>

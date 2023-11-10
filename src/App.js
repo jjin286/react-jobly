@@ -20,7 +20,7 @@ const BACKGROUND_IMAGE =
  * State
  * - currentUser
  * - token
- * - errors
+ * - errors: array of error messages, null if none
  *
  * App -> {Nav, RouteList}
  *
@@ -29,8 +29,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [errors, setErrors] = useState(null);
-
-  console.log("user state", currentUser);
 
   useEffect(
     /**decodes token and sets the user based off the username within it */

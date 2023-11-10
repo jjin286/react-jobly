@@ -1,15 +1,14 @@
 import JobCard from "./JobCard";
 
+
 /**Renders list of jobs
  *
  * Props:
- * -jobs like [{job1}, {job2}]
+ * - jobs like [{job1}, {job2}]
  *
  * {JobList, CompanyDetail} -> JobCardList -> JobCard
  */
-//companyHandle, title, salary, equity
 function JobCardList({ jobs }) {
-  console.log("JobcardList", jobs);
   return (
     <div className="JobCardList">
       {jobs.map((j) => (
@@ -22,6 +21,7 @@ function JobCardList({ jobs }) {
           key={j.id}
         />
       ))}
+
     </div>
   );
 }

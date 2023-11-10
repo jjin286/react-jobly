@@ -8,9 +8,9 @@ import Message from "./Message";
  *
  * state:
  * - search : form state for search
- * -
+ * - errors: array of error messages, null if none
  *
- * {CompanyList, JobList} -> SearchForm
+ * {CompanyList, JobList} -> SearchForm -> Message
  */
 function SearchForm({ handleSave }) {
   const [search, setSearch] = useState("");
@@ -19,7 +19,6 @@ function SearchForm({ handleSave }) {
     _.debounce((search) => attemptChange(search), 800),
     []
   );
-  console.log("Search form rendered");
 
   useEffect(
     /**Calls the debounce function with the search */

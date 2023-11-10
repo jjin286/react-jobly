@@ -6,11 +6,7 @@ import { useContext } from "react";
  *
  * Prop:
  * - logout fn
- *
- * Event:
- * - loggedIn fn
- * - loggedOut fn
- *
+ * 
  * App -> Nav
  */
 function Nav({ logout }) {
@@ -57,8 +53,21 @@ function Nav({ logout }) {
         <NavLink className="nav-link navbar-brand" to={"/"}>
           Jobly
         </NavLink>
-        <div className="navbar-nav">
-          {user !== null ? loggedIn() : loggedOut()}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-to-collapse"
+          aria-controls="navbar-to-collapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="navbar-collapse collapse" id="navbar-to-collapse">
+          <div className="navbar-nav ms-auto">
+            {user !== null ? loggedIn() : loggedOut()}
+          </div>
         </div>
       </div>
     </div>

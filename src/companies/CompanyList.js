@@ -6,21 +6,23 @@ import LoadingSpinner from "../utility/LoadingSpinner";
 import Pagination from "../utility/Pagination";
 
 const RECORDS_PER_PAGE = 20;
+
 /** Render CompanyList
  *
  * state:
  * - companies for list of companies
+ * - currentPage for pagination
  *
- * RouteList -> CompanyList -> {SearchForm, CompanyCard}
+ * RouteList -> CompanyList -> {SearchForm, CompanyCard, Pagination, LoadingSpinner}
  */
 function CompanyList() {
   const [companies, setCompanies] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  console.log("Company List rendered, State: ", companies);
 
+  /**Moves view to top when navigating to different page  */
   useEffect(() => {
-    window.scroll({top:0, behavior:"instant"})
-  }, [currentPage])
+    window.scroll({ top: 0, behavior: "instant" });
+  }, [currentPage]);
 
   /**Gets all companies for initial mount */
   useEffect(function loadCompaniesFromAPI() {
@@ -34,19 +36,17 @@ function CompanyList() {
     setPageNumber(1);
   }
 
-  function setPageNumber(pageNumber){
+  /**Sets state to provided page number */
+  function setPageNumber(pageNumber) {
     setCurrentPage(pageNumber);
-  }
-
-  if(companies === null){
-    return(
-      <LoadingSpinner />
-    )
   }
 
   const indexLastRecord = currentPage * RECORDS_PER_PAGE;
   const indexFirstRecord = indexLastRecord - RECORDS_PER_PAGE;
-  const currentCompanies = companies.slice(indexFirstRecord, indexLastRecord)
+  const currentCompanies =
+    companies !== null
+      ? companies.slice(indexFirstRecord, indexLastRecord)
+      : null;
 
   return (
     <div className="CompanyList">
@@ -66,7 +66,7 @@ function CompanyList() {
             />
           ))}
           <Pagination
-            pages={Math.ceil(companies.length/RECORDS_PER_PAGE)}
+            pages={Math.ceil(companies.length / RECORDS_PER_PAGE)}
             currentPage={currentPage}
             setCurrentPage={setPageNumber}
           />
