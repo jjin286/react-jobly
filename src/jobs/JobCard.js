@@ -34,8 +34,11 @@ function JobCard({ id, companyHandle, title, salary, equity }) {
         </>
       ) : (
         <>
-          <button disabled className="btn btn-dark opacity-50  my-1">
-            Applied
+          <button
+            className="btn btn-dark opacity-50  my-1"
+            onClick={() => context.apply(id)}
+          >
+            Unapply
           </button>
         </>
       )}
