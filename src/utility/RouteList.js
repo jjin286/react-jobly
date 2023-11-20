@@ -8,6 +8,7 @@ import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 import userContext from "../userContext";
 import React, { useContext } from "react";
+import AppliedJobList from "../jobs/AppliedJobList";
 
 /**
  * Renders Routelist
@@ -31,6 +32,7 @@ function RouteList({ register, login, updateUser }) {
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:handle" element={<CompanyDetail />} />
           <Route path="/jobs" element={<JobList />} />
+          <Route path="/applied" element={<AppliedJobList />} />
           <Route
             path="/profile"
             element={<ProfileForm updateUser={updateUser} />}

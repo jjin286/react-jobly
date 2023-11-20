@@ -6,7 +6,7 @@ import { useContext } from "react";
  *
  * Prop:
  * - logout fn
- * 
+ *
  * App -> Nav
  */
 function Nav({ logout }) {
@@ -21,6 +21,9 @@ function Nav({ logout }) {
         </NavLink>
         <NavLink className="nav-link" to={"/jobs"}>
           Jobs
+        </NavLink>
+        <NavLink className="nav-link" to={"/applied"}>
+          Applied
         </NavLink>
         <NavLink className="nav-link" to={"/profile"}>
           Profile

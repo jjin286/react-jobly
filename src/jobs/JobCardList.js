@@ -6,7 +6,7 @@ import JobCard from "./JobCard";
  * Props:
  * - jobs like [{job1}, {job2}]
  *
- * {JobList, CompanyDetail} -> JobCardList -> JobCard
+ * {JobList, CompanyDetail, AppliedJobList} -> JobCardList -> JobCard
  */
 function JobCardList({ jobs }) {
   return (
