@@ -36,7 +36,7 @@ function JobCard({ id, companyHandle, title, salary, equity }) {
       ) : (
         <>
           <button
-            className="job-button"
+            className="job-button bg-info"
             onClick={() => context.apply(id)}
           >
             Unapply

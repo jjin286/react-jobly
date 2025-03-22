@@ -7,34 +7,30 @@ import "./Hero.css"
  *
  * Homepage -> Hero
  */
-function Hero() {
-  const { user } = useContext(userContext);
+function Hero(props) {
+  console.log(props)
   return (
     <div className="hero m-5">
       <div className="slogan text-justify text-wrap d-flex flex-wrap m-auto">
         <div className="left m-auto">
           <div className="text-section">
-            <h1 className="text-justify text-wrap">Ready to find your next step?</h1>
-            <h1 className="text-justify text-wrap">Find your next <span className="text-primary">BIG</span> opportunity with Jobly!</h1>
-            <p>
-              Unlock exciting career possibilities and connect with top employers who value your skills.
-              Whether you're searching for a fresh start or aiming for the next level,
-              Jobly is here to help you land your dream job. Start exploring today!
-            </p>
+            <h1 className="text-justify text-wrap">{props.info.slogan1}</h1>
+            <h1 className="text-justify text-wrap">{props.info.slogan2}</h1>
+            <p>{props.info.text1}</p>
           </div>
           <div className="start d-flex flex-column mt-5">
-            <p>Ready to get started?</p>
+            <p>{props.info.text2}</p>
             <div className="button-section">
-              <Link to={`/login`}>
-                <button className="mx-2">Login</button>
+              <Link to={props.info.link1}>
+                <button className="mx-2">{props.info.button1}</button>
               </Link>
-              <Link to={`/signup`}>
-                <button className="mx-2">Signup</button>
+              <Link to={props.info.link2}>
+                <button className="mx-2">{props.info.button2}</button>
               </Link>
             </div>
           </div>
         </div>
-        <img className="hero-image" src="momo.svg"/>
+        <img className="hero-image" src={props.info.image}/>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@
 
 .footer{
   display: flex;
-  margin-top: 16px;
+  margin-top: auto;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

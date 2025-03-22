@@ -23,3 +23,11 @@
   color: white;
   margin-top: 5px;
 }
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+  .CompanyCard{
+    width: 80%;
+
+  }
+}

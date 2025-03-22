@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Message from "./Message";
 import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 /**Renders signup form
  *
@@ -46,68 +47,81 @@ function SignupForm({ register }) {
   }
 
   return (
-    <div className="SignupForm fw-bold w-25 text-start py-2 d-flex flex-column h-75 justify-content-center container">
+    <div className="SignupForm ">
       <h1>Signup</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-secondary bg-opacity-75 p-3 rounded"
+        className=""
       >
         <div className="mb-3">
           <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            className="form-control  "
-            name="username"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+            <img src="username.svg"/>
+            <input
+              id="username"
+              className="form-control  "
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            className="form-control  "
-            name="password"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+            <img src="password.svg"/>
+            <input
+              id="password"
+              type="password"
+              className="form-control  "
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="firstName">First Name</label>
-          <input
-            id="firstName"
-            type="firstName"
-            className="form-control  "
-            name="firstName"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+            <input
+              id="firstName"
+              type="firstName"
+              className="form-control  "
+              name="firstName"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="lastName">Last Name</label>
-          <input
-            id="lastName"
-            type="lastName"
-            className="form-control  "
-            name="lastName"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+            <input
+              id="lastName"
+              type="lastName"
+              className="form-control  "
+              name="lastName"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            className="form-control  "
-            name="email"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+            <img src="email.svg"/>
+            <input
+              id="email"
+              type="email"
+              className="form-control  "
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
-        <button className="btn btn-light opacity-75" type="submit">
-          Submit
+        <button className="button-submit" type="submit">
+          Create Account
         </button>
 
         {errors !== null && <Message messages={errors} type="danger" />}

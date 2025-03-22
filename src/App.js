@@ -9,6 +9,7 @@ import JoblyApi from "./api";
 import { jwtDecode } from "jwt-decode";
 import Message from "./utility/Message";
 import LoadingSpinner from "./utility/LoadingSpinner";
+import Footer from "./Footer";
 
 const BACKGROUND_IMAGE =
   "https://images.unsplash.com/photo-1698681647459-40276a" +
@@ -99,7 +100,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="vh-100">
+      <div className="app-container">
         <BrowserRouter>
           <userContext.Provider value={{ user: currentUser, apply }}>
             <Nav logout={logout} />
@@ -108,6 +109,7 @@ function App() {
               login={login}
               updateUser={updateUser}
             />
+            <Footer />
           </userContext.Provider>
         </BrowserRouter>
       </div>
