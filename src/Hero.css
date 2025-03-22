@@ -8,7 +8,7 @@
   margin:auto;
 }
 
-.button-section > button {
+.button-section > a > button {
   width: 8em;
   height: 50px;
   border: 3px solid #315cfd;
@@ -20,7 +20,7 @@
   font-weight: 550;
 }
 
-.button-section > button:hover {
+.button-section > a > button:hover {
   background: #315cfd;
   color: white;
   font-size: 1.2em;
@@ -43,18 +43,18 @@
   .left{
     width: 40%;
   }
-  .button-section > button {
+  .button-section > a > button {
     width: 8em;
   }
 }
 
 @media only screen and (max-width: 767px) {
   /* phones */
-  .button-section > button {
+  .button-section > a > button {
     width: 7em;
   }
 
-  .button-section > button:hover {
+  .button-section > a > button:hover {
     background: #315cfd;
     color: white;
     font-size: 1em;

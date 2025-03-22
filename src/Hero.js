@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import userContext from "./userContext";
+import { Link } from "react-router-dom";
 import "./Hero.css"
 
 /** Render Hero section
@@ -24,8 +25,12 @@ function Hero() {
           <div className="start d-flex flex-column mt-5">
             <p>Ready to get started?</p>
             <div className="button-section">
-              <button className="mx-2">Login</button>
-              <button className="mx-2">Signup</button>
+              <Link to={`/login`}>
+                <button className="mx-2">Login</button>
+              </Link>
+              <Link to={`/signup`}>
+                <button className="mx-2">Signup</button>
+              </Link>
             </div>
           </div>
         </div>
