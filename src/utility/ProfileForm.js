@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import userContext from "../userContext";
 import Message from "./Message";
+import "./ProfileForm.css";
 
 /**Renders profile form
  *
@@ -46,67 +47,77 @@ function ProfileForm({ updateUser }) {
   }
 
   return (
-    <div className="ProfileForm fw-bold d-flex flex-column container w-25 justify-content-center text-start py-2 h-75">
+    <div className="ProfileForm">
+      <form onSubmit={handleSubmit} >
       <h1>Edit Your Profile</h1>
-      <form onSubmit={handleSubmit} className="bg-secondary p-3 rounded bg-opacity-75" >
         <div className="mb-3">
           <label className="form-label" htmlFor="username">
             Username
           </label>
-          <input
-            id="username"
-            className="form-control"
-            name="username"
-            onChange={handleChange}
-            value={formData.username}
-            disabled
-          />
+          <div class="inputForm">
+            <img src="username.svg"/>
+            <input
+              id="username"
+              className="form-control"
+              name="username"
+              onChange={handleChange}
+              value={formData.username}
+              disabled
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label className="form-label" htmlFor="firstName">
             First Name
           </label>
-          <input
-            id="firstName"
-            type="firstName"
-            className="form-control"
-            name="firstName"
-            onChange={handleChange}
-            value={formData.firstName}
-          />
+          <div class="inputForm">
+            <input
+              id="firstName"
+              type="firstName"
+              className="form-control"
+              name="firstName"
+              onChange={handleChange}
+              value={formData.firstName}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label className="form-label" htmlFor="lastName">
             Last Name
           </label>
-          <input
-            id="lastName"
-            type="lastName"
-            className="form-control"
-            name="lastName"
-            onChange={handleChange}
-            value={formData.lastName}
-          />
+          <div class="inputForm">
+            <input
+              id="lastName"
+              type="lastName"
+              className="form-control"
+              name="lastName"
+              onChange={handleChange}
+              value={formData.lastName}
+            />
+          </div>
         </div>
 
         <div className="mb-3">
           <label className="form-label" htmlFor="email">
             Email
           </label>
-          <input
-            id="email"
-            type="email"
-            className="form-control"
-            name="email"
-            onChange={handleChange}
-            value={formData.email}
-          />
+          <div class="inputForm">
+            <img src="email.svg"/>
+            <input
+              id="email"
+              type="email"
+              className="form-control"
+              name="email"
+              onChange={handleChange}
+              value={formData.email}
+            />
+          </div>
         </div>
 
-        <button className="btn btn-light opacity-75" type="submit">
-          Submit
+        <button className="button-submit" type="submit">
+          Save Changes
         </button>
         {message.messages !== null && (
           <Message messages={message.messages} type={message.type} />

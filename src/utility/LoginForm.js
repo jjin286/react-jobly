@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Message from "./Message";
+import "./LoginForm.css";
+
 /**Renders login form
  *
  * Props:
@@ -41,37 +43,44 @@ function LoginForm({ login }) {
   }
 
   return (
-    <div className="LoginForm fw-bold w-25 d-flex flex-column h-75 justify-content-center container py-2 text-start">
-      <h1>Login</h1>
+    <div className="LoginForm">
       <form
         onSubmit={handleSubmit}
-        className="bg-secondary bg-opacity-75 p-3 rounded"
-      >
+        className=""
+        >
+        <h1>Login</h1>
         <div className="mb-3">
           <label className="form-label" htmlFor="username">
             Username
           </label>
-          <input
-            id="username"
-            className="form-control "
-            name="username"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+          <img src="email.svg"/>
+            <input
+              id="username"
+              className="form-control "
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="password">
             Password
           </label>
-          <input
-            id="password"
-            type="password"
-            className="form-control "
-            name="password"
-            onChange={handleChange}
-          />
+          <div class="inputForm">
+          <img src="password.svg"/>
+
+            <input
+              id="password"
+              type="password"
+              className="form-control "
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <button className="btn btn-light opacity-75" type="submit">
-          Submit
+        <button className="button-submit" type="submit">
+          Sign In
         </button>
         {errors !== null && <Message messages={errors} type="danger" />}
       </form>
