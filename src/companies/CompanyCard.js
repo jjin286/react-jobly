@@ -21,6 +21,7 @@ function CompanyCard({ handle, name, description }) {
           <h3>{name}</h3>
           <div>{description}</div>
         </div>
+        <button className="company-button">View Available Jobs</button>
       </Link>
     </div>
   );

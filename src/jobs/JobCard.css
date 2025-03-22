@@ -1,8 +1,9 @@
-.CompanyCard{
+.JobCard{
   color:black;
   border: solid;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   width: 50%;
   margin: 20px auto;
   padding: 20px;
@@ -11,11 +12,11 @@
   border-color: #0077B5;
 }
 
-.CompanyCard > a{
+.JobCard > a{
   color:black;
 }
 
-.company-button{
+.job-button{
   background-color: none;
   border: none;
   background-color: #1891d3;

@@ -1,0 +1,14 @@
+.SearchForm{
+  display: flex;
+  background-color: white;
+  margin: auto;
+  width: 50%;
+}
+
+.search-button{
+  height: 100%;
+  border: none;
+  background-color: #1891d3;
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+}

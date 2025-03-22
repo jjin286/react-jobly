@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { formatCurrency } from "../utility/helpers";
 import userContext from "../userContext";
+import "./JobCard.css"
 
 /**Renders job card
  *
@@ -18,15 +19,15 @@ function JobCard({ id, companyHandle, title, salary, equity }) {
   const { user } = useContext(userContext);
 
   return (
-    <div className="JobCard mx-auto my-3 p-3 w-50 text-start rounded bg-secondary bg-opacity-75">
+    <div className="JobCard">
       <h3>{title}</h3>
-      {companyHandle && <div>{companyHandle} </div>}
-      {salary && <div>Salary: {formatCurrency(salary)} </div>}
-      {equity && <div>Equity: {equity} </div>}
+      {companyHandle && <div><img src="company.svg"/> {companyHandle} </div>}
+      {salary && <div><img src="salary.svg"/> {formatCurrency(salary)} </div>}
+      {equity && <div><img src="equity.svg"/> {equity} </div>}
       {user.applications.indexOf(id) === -1 ? (
         <>
           <button
-            className="btn btn-dark opacity-75  my-1"
+            className="job-button"
             onClick={() => context.apply(id)}
           >
             Apply Now
@@ -35,7 +36,7 @@ function JobCard({ id, companyHandle, title, salary, equity }) {
       ) : (
         <>
           <button
-            className="btn btn-dark opacity-50  my-1"
+            className="job-button"
             onClick={() => context.apply(id)}
           >
             Unapply

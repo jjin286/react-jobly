@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import _ from "lodash";
 import Message from "./Message";
+import "./SearchForm.css";
 /**Renders search bar
  *
  * Props:
@@ -52,18 +53,21 @@ function SearchForm({ handleSave }) {
   return (
     <div>
       <form
-        className="SearchForm py-4 justify-content-center d-flex"
+        className="SearchForm"
         onSubmit={handleSubmit}
       >
-        <input
-          className="form-control w-25 "
-          name="search"
-          placeholder="search"
-          onChange={handleChange}
-        />
-        <button className="btn btn-secondary mx-2" type="submit">
-          Search
-        </button>
+        <div class="inputForm">
+          <img src="searchbar.svg"/>
+          <input
+            className="form-control"
+            name="search"
+            placeholder="Search"
+            onChange={handleChange}
+          />
+          <button className="search-button" type="submit">
+            Search
+          </button>
+        </div>
       </form>
       {errors !== null && <Message messages={errors} type="danger" />}
     </div>

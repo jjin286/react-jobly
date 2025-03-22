@@ -43,6 +43,7 @@ function JobList() {
 
   return (
     <div className="JobList">
+      <h1 className="pt-5">Jobs</h1>
       {jobs === null ? (
         <LoadingSpinner />
       ) : (

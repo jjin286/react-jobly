@@ -8,7 +8,7 @@
   margin:auto;
 }
 
-button {
+.button-section > button {
   width: 8em;
   height: 50px;
   border: 3px solid #315cfd;
@@ -20,7 +20,7 @@ button {
   font-weight: 550;
 }
 
-button:hover {
+.button-section > button:hover {
   background: #315cfd;
   color: white;
   font-size: 1.2em;
@@ -43,18 +43,18 @@ button:hover {
   .left{
     width: 40%;
   }
-  button {
+  .button-section > button {
     width: 8em;
   }
 }
 
 @media only screen and (max-width: 767px) {
   /* phones */
-  button {
+  .button-section > button {
     width: 7em;
   }
 
-  button:hover {
+  .button-section > button:hover {
     background: #315cfd;
     color: white;
     font-size: 1em;

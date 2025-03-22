@@ -13,8 +13,8 @@ function Homepage() {
   return (
     <div className="homepage">
       <Hero />
-      <Features />
       <Start />
+      <Features />
       <Footer />
     </div>
   );
