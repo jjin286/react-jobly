@@ -1,0 +1,16 @@
+.CompanyCard{
+  color:black;
+  border: solid;
+  border-radius: 5px;
+  display: flex;
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: left;
+  background-color: #FAFAFA;
+  border-color: #0077B5;
+}
+
+.CompanyCard > a{
+  color:black;
+}

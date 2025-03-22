@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import "./CompanyCard.css";
 /**Renders company card
  *
  * Props:
@@ -12,9 +12,9 @@ import { Link } from "react-router-dom";
 
 function CompanyCard({ handle, name, description }) {
   return (
-    <div className="CompanyCard bg-dark bg-opacity-75 mx-auto my-3 p-3 w-50 text-start rounded text-bg-dark">
+    <div className="CompanyCard">
       <Link
-        className="link-light text-decoration-none"
+        className="text-decoration-none"
         to={`/companies/${handle}`}
       >
         <div>

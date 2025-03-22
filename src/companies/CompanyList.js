@@ -51,9 +51,10 @@ function CompanyList() {
   return (
     <div className="CompanyList">
       {companies === null ? (
-        <LoadingSpinner />
+         <LoadingSpinner />
       ) : (
         <>
+          <h1>Companies</h1>
           <SearchForm handleSave={getCompanies} />
 
           {companies.length === 0 && <span>No companies found</span>}
