@@ -28,14 +28,14 @@ ol::before {
 	z-index: -1;
 }
 
-li {
+.steps > li {
 	padding: 0.5rem 1.5rem 1rem;
 	border-radius: 1.5rem;
   border: solid;
   border-color: #0077B5;
 }
 
-li + li {
+.steps > li + li {
 	margin-top: 1rem;
 }
 

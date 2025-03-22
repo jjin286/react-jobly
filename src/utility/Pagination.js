@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import "./Pagination.css"
 
 /**Renders pagination element
  *
@@ -13,12 +14,14 @@ function Pagination({ pages, currentPage, setCurrentPage }) {
     pagesLi.push(
       <li
         key={uuid()}
-        className={`page-item page-link text-light bg-dark ${
-          i === currentPage && "opacity-75"
+        className={`page-item ${
+          i === currentPage && "active"
         }`}
         onClick={() => setCurrentPage(i)}
       >
-        {i}
+        <a class="page-link" href="#">
+            {i}
+        </a>
       </li>
     );
   }
@@ -31,21 +34,26 @@ function Pagination({ pages, currentPage, setCurrentPage }) {
       <ul className="pagination">
         {currentPage !== 1 && (
           <li
-            className="page-item page-link bg-dark text-light"
+            className="page-item"
+            key={uuid()}
             onClick={() => setCurrentPage(currentPage - 1)}
           >
-            Previous
+            <a class="page-link" href="#">
+              Previous
+            </a>
           </li>
         )}
         {pagesLi}
         {
           <li
-            className={`page-item page-link bg-dark text-light ${
+            className={`page-item   ${
               (currentPage === pages || pages === 0) && "invisible"
             }`}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
-            Next
+            <a class="page-link" href="#">
+              Next
+            </a>
           </li>
         }
       </ul>

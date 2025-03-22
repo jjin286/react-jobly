@@ -1,0 +1,9 @@
+.pagination{
+  background-color: white;
+  display: flex;
+  height: 100%;
+}
+
+.page-item > .active{
+  background-color: #1891d3;
+}

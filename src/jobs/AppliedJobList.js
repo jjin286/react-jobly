@@ -31,7 +31,7 @@ function AppliedJobList(){
         ? <LoadingSpinner />
         :
         <>
-          <h1>Applied Jobs</h1>
+          <h1 className="p-5">Applied Jobs</h1>
           <JobCardList jobs={jobs}/>
           { jobs.length === 0 && <p>No applied jobs</p>}
         </>
