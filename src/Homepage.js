@@ -3,7 +3,7 @@ import userContext from "./userContext";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import Start from "./Start"
-
+import Features from "./Features";
 /** Render Homepage
  *
  * RouteList -> Homepage
@@ -13,6 +13,7 @@ function Homepage() {
   return (
     <div className="homepage">
       <Hero />
+      <Features />
       <Start />
       <Footer />
     </div>
