@@ -2,6 +2,7 @@ import { useContext } from "react";
 import userContext from "./userContext";
 import Hero from "./Hero";
 import Footer from "./Footer";
+import Start from "./Start"
 
 /** Render Homepage
  *
@@ -12,7 +13,7 @@ function Homepage() {
   return (
     <div className="homepage">
       <Hero />
-      
+      <Start />
       <Footer />
     </div>
   );
