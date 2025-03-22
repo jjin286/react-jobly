@@ -20,6 +20,7 @@ function LoginForm({ login }) {
     password: "",
   });
   const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   /**Handle form data updates */
@@ -34,16 +35,20 @@ function LoginForm({ login }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
+    setLoading(true);
     try {
       await login(formData);
       navigate("/");
     } catch (err) {
       setErrors(err);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="LoginForm">
+      {loading && <div className="loader"></div>}
       <form
         onSubmit={handleSubmit}
         className=""

@@ -23,6 +23,7 @@ function SignupForm({ register }) {
     email: "",
   });
   const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   /**Handle form data updates */
@@ -38,21 +39,25 @@ function SignupForm({ register }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
+    setLoading(true);
     try {
       await register(formData);
       navigate("/");
     } catch (err) {
       setErrors(err);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="SignupForm ">
-      <h1>Signup</h1>
+      {loading && <div className="loader"></div>}
       <form
         onSubmit={handleSubmit}
         className=""
-      >
+        >
+        <h1>Signup</h1>
         <div className="mb-3">
           <label htmlFor="username">Username</label>
           <div class="inputForm">
