@@ -1,0 +1,28 @@
+.social{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+}
+
+.social-container{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container{
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.footer{
+  display: flex;
+  margin-top: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

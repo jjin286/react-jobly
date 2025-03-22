@@ -1,7 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+body {
+   font-family: 'Open Sans',serif;
+   font-feature-settings: 'tnum';
+}
 
 .App{
   text-align: center;
-  color: white;
-
+  color: black;
 }

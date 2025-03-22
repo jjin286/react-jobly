@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import userContext from "../userContext";
 import { useContext } from "react";
-
+import "./Nav.css";
 /** Renders Nav
  *
  * Prop:
@@ -51,10 +51,11 @@ function Nav({ logout }) {
   }
 
   return (
-    <div className="Nav navbar navbar-expand-sm navbar-dark bg-dark">
+    <div className="Nav navbar navbar-expand-sm border">
       <div className="container-fluid">
         <NavLink className="nav-link navbar-brand" to={"/"}>
-          Jobly
+          <img className="job-logo" src="joblogo.jpg"/>
+          <span className="text-primary"><b>Jobly</b></span>
         </NavLink>
         <button
           className="navbar-toggler"
